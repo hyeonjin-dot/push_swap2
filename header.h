@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:11 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/10 20:17:45 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/14 22:43:47 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ void		push(t_head *head, t_head *bhed);
 void		revrotate(t_head *head);
 void		sort(t_head *head, t_head *bhed);
 int			sortright(t_head *head);
-void		sorthird(t_head *head);
+int			sorthird(t_head *head);
 void		ft_error();
 int			ft_lstlen(t_head *head);
+int			partion(int *lst, int i, int j);
+int			quicksort(int *lst, int i, int j);
+int			*mklst(t_head head);
 long long	ft_atoi2(const char *str);
 
 #endif

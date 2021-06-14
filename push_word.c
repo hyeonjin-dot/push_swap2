@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/10 18:39:15 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/14 17:55:08 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	swap(t_head *head)
 	write(1, "sa\n", 4);
 }
 
-void	rotate(t_head *head)
+void	revrotate(t_head *head)
 {
 	t_li	*tmp;
 	t_li	*lst;
@@ -58,10 +58,10 @@ void	rotate(t_head *head)
 		i--;
 	}
 	tmp->next = NULL;
-	write(1, "ra\n", 4);
+	write(1, "rra\n", 4);
 }
 
-void	revrotate(t_head *head) // fir -> last
+void	rotate(t_head *head)
 {
 	t_li	*tmp;
 	t_li	*lst;
@@ -80,7 +80,7 @@ void	revrotate(t_head *head) // fir -> last
 		i++;
 	}
 	lst->next = tmp;
-	write(1, "rra\n", 4);
+	write(1, "ra\n", 4);
 }
 
 void	push(t_head *head, t_head *bhed)

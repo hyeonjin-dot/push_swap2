@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:05:35 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/10 21:01:23 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/14 22:50:01 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ int		ft_lstlen(t_head *head)
 	int		i;
 	
 	i = 1;
-	li = (t_li*)malloc(sizeof(t_li*));
 	li = head->fir;
 	while (li->next != NULL)
 	{
 		li = li->next;
 		i++;
 	}
-	free(li);
 	return (i);
 }
 
@@ -34,7 +32,7 @@ int		sortright(t_head *head)
 	t_li	*li;
 	int		len;
 
-	li = (t_li*)malloc(sizeof(t_li*));
+	//li = (t_li*)malloc(sizeof(t_li*));
 	li = head->fir;
 	len = ft_lstlen(head) - 1;
 	while (len > 0)
@@ -42,9 +40,13 @@ int		sortright(t_head *head)
 		if (li->data < li->next->data)
 			len--;
 		else
+		{
+			//free(li);
 			return (len);
+		}
 		li = li->next;
 	}
+	//free(li);
 	return (0);
 }
 
@@ -55,7 +57,7 @@ void	sort(t_head *head, t_head *bhed)
 	len = ft_lstlen(head);
 	if (len == 1)
 		return ;
-	if (len == 2)
+	else if (len == 2)
 	{
 		if (sortright(head) == 0)
 			return ;
@@ -65,6 +67,8 @@ void	sort(t_head *head, t_head *bhed)
 			return ;
 		}
 	}
-	if (len == 3)
+	else if (len == 3)
 		sorthird(head);
+	else
+		// 새로운 함수?
 }
