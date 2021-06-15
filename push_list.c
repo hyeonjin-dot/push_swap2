@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:45 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/10 18:28:12 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/15 14:24:26 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	li_print(t_head *head)
 
 	new = (t_li*)malloc(sizeof(t_li));
 	new = head->fir;
+	if (new == NULL)
+		return ;
 	while (new->next != NULL)
 	{
 		tmp = ft_itoa(new->data);

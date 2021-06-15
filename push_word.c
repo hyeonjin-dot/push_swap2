@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/14 17:55:08 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/06/15 14:33:48 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	swap(t_head *head)
+void	swap(t_head *head, char c)
 {
 	t_li	*zero;
 	t_li	*one;
@@ -31,10 +31,13 @@ void	swap(t_head *head)
 	zero = head->fir;
 	one = zero->next;
 	ft_swap(&(zero->data), &(one->data));
-	write(1, "sa\n", 4);
+	if (c == 'a')
+		write(1, "sa\n", 4);
+	else
+		write(1, "sb\n", 4);
 }
 
-void	revrotate(t_head *head)
+void	revrotate(t_head *head, char c)
 {
 	t_li	*tmp;
 	t_li	*lst;
@@ -58,10 +61,13 @@ void	revrotate(t_head *head)
 		i--;
 	}
 	tmp->next = NULL;
-	write(1, "rra\n", 4);
+	if (c == 'a')
+		write(1, "rra\n", 5);
+	else
+		write(1, "rrb\n", 5);
 }
 
-void	rotate(t_head *head)
+void	rotate(t_head *head, char c)
 {
 	t_li	*tmp;
 	t_li	*lst;
@@ -80,10 +86,13 @@ void	rotate(t_head *head)
 		i++;
 	}
 	lst->next = tmp;
-	write(1, "ra\n", 4);
+	if (c == 'a')
+    write(1, "ra\n", 4);
+	else
+		write(1, "rb\n", 4);
 }
 
-void	push(t_head *head, t_head *bhed)
+void	push(t_head *head, t_head *bhed, char c)
 {
 	t_li	*frm;
 	t_li	*to;
@@ -104,5 +113,8 @@ void	push(t_head *head, t_head *bhed)
 		bhed->fir = frm;
 		frm->next = to;
 	}
-	write(1, "pb\n", 4);
+	if (c == 'a')
+    write(1, "pb\n", 4);
+	else
+		write(1, "pa\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/14 21:08:12 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/06/15 14:35:12 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	sorthird(t_head *head)
 	else if (li->data > li->next->data)
 	{
 		if (li->data > li->next->next->data && li->next->data < li->next->next->data)
-				rotate(head);
+				rotate(head, 'a');
 		else
-			swap(head);
+			swap(head, 'a');
 	}	
 	else
-		revrotate(head);
+		revrotate(head, 'a');
 	return (sorthird(head));
 }
