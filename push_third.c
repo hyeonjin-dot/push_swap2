@@ -6,13 +6,13 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 14:35:12 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/15 15:20:09 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	sorthird(t_head *head)
+int	sorthird(t_head *head, char c)
 {
 	t_li	*li;
 
@@ -22,11 +22,11 @@ int	sorthird(t_head *head)
 	else if (li->data > li->next->data)
 	{
 		if (li->data > li->next->next->data && li->next->data < li->next->next->data)
-				rotate(head, 'a');
+				rotate(head, c);
 		else
-			swap(head, 'a');
+			swap(head, c);
 	}	
 	else
-		revrotate(head, 'a');
-	return (sorthird(head));
+		revrotate(head, c);
+	return (sorthird(head, c));
 }

@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:05:35 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 15:07:39 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/15 16:20:51 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_lstlen(t_head *head)
 	t_li	*li;
 	int		i;
 	
+	if (head->fir == NULL)
+		return (0);
 	i = 1;
 	li = head->fir;
 	while (li->next != NULL)
@@ -63,56 +65,13 @@ int	sortleft(t_head *head)
 	return (0);
 }
 
-void	sortother(t_head *head, t_head *bhed)
-{
-	t_li	*li;
-	int		len;
-	int		*lst;
-	int		x;
-
-	li = head->fir;
-	len = ft_lstlen(head);
-	//if (len == 5)
-		//sort_five(head);
-	lst = mklst(head);
-	quicksort(lst, 0, len - 1);
-	len = len / 3;
-	x = lst[len - 1];
-	len = ft_lstlen(head);
-	while (len > 0)
-	{
-		if (li->data <= x)
-		{
-			push(head, bhed, 'a');
-			li = head ->fir;
-		}
-		else
-			rotate(head, 'a');
-		len--;
-	}
-	revrotate(bhed , 'b');
-	if (sortright(head) == 0 && sortleft(bhed) == 0)
-	{
-		li = bhed->fir;
-		len = ft_lstlen(bhed);
-		while (len > 0)
-		{
-			push(bhed, head, 'b');
-			li = bhed->fir;
-			len--;
-		}
-		return ;
-	}
-	sort(head, bhed);
-}
-
 void	sort(t_head *head, t_head *bhed)
 {
 	int		len;
 	int		lenb;
 
 	len = ft_lstlen(head);
-	lenb = ft_lstlen(bhead);
+	lenb = ft_lstlen(bhed);
 	if (len == 1 && lenb == 0)
 		return ;
 	else if (len == 2 && lenb == 0)
@@ -126,7 +85,7 @@ void	sort(t_head *head, t_head *bhed)
 		}
 	}
 	else if (len == 3 && lenb == 0)
-		sorthird(head);
+		sorthird(head , 'a');
 	else
 		sortother(head, bhed);
 }

@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 21:09:01 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 14:28:57 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/15 16:56:52 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	partion(int *lst, int i, int j)
 	b = j;
 	while (a <= b)
 	{
-		while (lst[b] <= x && a <= j)
+		while (lst[a] <= x && a <= j)
 			a++;
 		while (b >= (i + 1) && x <= lst[b])
 			b--;
