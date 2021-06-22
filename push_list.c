@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:45 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 16:20:56 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/22 14:49:14 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	li_insert(t_head *head, int data)
 	t_li	*new;
 	t_li	*last;
 
-	new = (t_li*)malloc(sizeof(t_li));
+	new = (t_li*)malloc(sizeof(t_li*));
 	new->data = data;
 	new->next = NULL;
 	if (head->fir == NULL)
@@ -34,28 +34,4 @@ void	li_insert(t_head *head, int data)
 	while (last->next != NULL)
 		last= last->next;
 	last->next = new;
-}
-
-void	li_print(t_head *head)
-{
-	t_li	*new;
-	char	*tmp;
-	int		len;
-
-	new = (t_li*)malloc(sizeof(t_li));
-	new = head->fir;
-	if (new == NULL)
-		return ;
-	while (new->next != NULL)
-	{
-		tmp = ft_itoa(new->data);
-		len = ft_strlen(tmp);
-		write(1, tmp, len);
-		write(1, "\n", 2);
-		new = new->next;
-	}
-	tmp = ft_itoa(new->data);
-	len = ft_strlen(tmp);
-	write(1, tmp, len);
-	write(1, "\n", 2);
 }

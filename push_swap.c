@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:23:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 16:21:15 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/22 14:47:32 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ int		check_num(char  *str)
 
 	i = 0;
 	j = 0;
+	str = ft_strtrim(str, " ");
 	while (str[i])
 	{
 		if (str[i] == ' ')
 			j++;
 		i++;
 	}
-    if (str[0] != '-' && !(str[0] >= '0' && str[0] <= '9'))
+    if (!(str[0] >= '0' && str[0] <= '9') && !(str[0] == '-'))
 		ft_error();
     num = ft_atoi2(str);
     if (num > 2147483647 || num < -2147483648)
@@ -34,26 +35,26 @@ int		check_num(char  *str)
 	return (j);
 }
 
-char	*inspace(t_head *head, char *str, int i)
+char	*inspace(t_head *head, char *str, int i) // 모르게써
 {
 	char	*tmp;
 	int		num;
 	int		k;
 
 	k = 0;
+	str = ft_strtrim(str, " ");
 	while (i > 0)
 	{
 		tmp = str;
 		num = ft_atoi(tmp);
-		while (tmp[k] >= '0' && tmp[k] <= '9')
+		if (tmp[k] == '-')
 			k++;
-		k++;
-		if (!(tmp[k] >= '0' && tmp[k] <= '9') && !(tmp[k] == '-'))
-			ft_error();
+		while (tmp[k] >= '0' && tmp[k] <= '9' && tmp[k])
+			k++;
 		i--;
 		li_insert(head, num);
-		tmp = tmp + k - 1;
-		str = str + k - 1;
+		tmp = tmp + k;
+		str = str + k;
 	}
 	return (str);
 }
@@ -67,8 +68,8 @@ void	checksame(t_head *head)
 	int		*lst;
 
 	i = 0;
-	tmp = (t_li*)malloc(sizeof(t_li));
-	lst = (int *)malloc(sizeof(int) * len);
+	len = ft_lstlen(head);
+	lst = (int *)malloc(sizeof(int) * (len + 1));
 	tmp = head->fir;
 	while (tmp->next != NULL)
 	{
@@ -82,7 +83,7 @@ void	checksame(t_head *head)
 	{
 		j = 0;
 		len = 0;
-		while (len < i)
+		while (len < ft_lstlen(head))
 		{
 			if (lst[i] == lst[len])
 				j++;
@@ -92,6 +93,7 @@ void	checksame(t_head *head)
 		}
 		i++;
 	}
+	return ;
 }
 
 int	main(int argc, char *argv[])
@@ -120,5 +122,7 @@ int	main(int argc, char *argv[])
 	}
 	checksame(head);
 	sort(head, bhed);
-	//li_print(head); //
+	free(head);
+	free(bhed);
+	return (0);
 }

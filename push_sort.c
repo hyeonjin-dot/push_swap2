@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:05:35 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 16:20:51 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/22 18:27:11 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	sort(t_head *head, t_head *bhed)
 
 	len = ft_lstlen(head);
 	lenb = ft_lstlen(bhed);
+	if (lenb == 0 && sortright(head) == 0)
+		return ;
 	if (len == 1 && lenb == 0)
 		return ;
 	else if (len == 2 && lenb == 0)
@@ -85,7 +87,10 @@ void	sort(t_head *head, t_head *bhed)
 		}
 	}
 	else if (len == 3 && lenb == 0)
-		sorthird(head , 'a');
+		sorthird(head, bhed, 'a');
+	else if (len == 5)
+		sortfive(head, bhed);
 	else
 		sortother(head, bhed);
+	return ;
 }

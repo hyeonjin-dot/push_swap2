@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:11 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/15 15:20:19 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/22 18:38:58 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,22 @@ typedef struct		s_head
 
 void		li_init(t_head *head);
 void		li_insert(t_head *head, int data);
-void		li_print(t_head *head);
 void		swap(t_head *head, char c);
-void		rotate(t_head *head, char c);
-void		push(t_head *head, t_head *bhed, char c);
-void		revrotate(t_head *head, char c);
+void		rotate(t_head **head, char c);
+void		push(t_head **head, t_head **bhed, char c);
+void		revrotate(t_head **head, char c);
 void		sort(t_head *head, t_head *bhed);
+void		re_sort(t_head *head, t_head *bhed, char c);
+void		re_sortb(t_head *bhed, t_head *head, char c);
 void		sortother(t_head *head, t_head *bhed);
+void		sortotherb(t_head *bhed, t_head *head);
 int			sortright(t_head *head);
 int			sortleft(t_head *head);
-int			sorthird(t_head *head, char c);
+void		sorthird(t_head *head, t_head *bhed, char c);
+void		sorthirdb(t_head *bhed, t_head *head, char c);
+void		sortfive(t_head *head, t_head *bhed);
 void		ft_error();
 int			ft_lstlen(t_head *head);
-int			partion(int *lst, int i, int j);
 void		quicksort(int *lst, int i, int j);
 int			*mklst(t_head *head);
 long long	ft_atoi2(const char *str);

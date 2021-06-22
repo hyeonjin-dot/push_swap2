@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:33 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/10 19:37:52 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/19 22:25:20 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int checkspace2(char c)
 {
     if (c == ' ' || (c >= '\t' && c <= '\r'))
         return (1);
+	else if (c == '\"')
+		return (1);
     else
         return (0);
 }
