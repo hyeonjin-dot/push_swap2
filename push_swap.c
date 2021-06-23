@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:23:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/22 14:47:32 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/06/23 22:54:04 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,25 @@ char	*inspace(t_head *head, char *str, int i) // 모르게써
 	int		num;
 	int		k;
 
-	k = 0;
-	str = ft_strtrim(str, " ");
 	while (i > 0)
 	{
+		k = 0;
+		str = ft_strtrim(str, " ");
 		tmp = str;
 		num = ft_atoi(tmp);
 		if (tmp[k] == '-')
 			k++;
 		while (tmp[k] >= '0' && tmp[k] <= '9' && tmp[k])
 			k++;
-		i--;
 		li_insert(head, num);
-		tmp = tmp + k;
 		str = str + k;
+		i--;
 	}
 	return (str);
 }
 
 void	checksame(t_head *head)
 {
-	t_li	*tmp;
 	int		i;
 	int		j;
 	int		len;
@@ -69,16 +67,7 @@ void	checksame(t_head *head)
 
 	i = 0;
 	len = ft_lstlen(head);
-	lst = (int *)malloc(sizeof(int) * (len + 1));
-	tmp = head->fir;
-	while (tmp->next != NULL)
-	{
-		lst[i] = tmp->data;
-		tmp = tmp->next;
-		i++;
-	}
-	lst[i] = tmp->data;
-	i = 0;
+	lst = mklst(head);
 	while (i < ft_lstlen(head))
 	{
 		j = 0;
