@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/23 21:08:50 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/24 16:57:01 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,31 @@ int		checkcontent(t_head *head)
 		return (5);
 }
 
-void	resorthirdb(t_head *head, t_head *bhed, char c)
+void	resorthirdb(t_head *bhed, t_head *head, char c)
 {
-    if (checkcontent(bhed) == 0)
+    printf("resorthirdb\n"); //
+	if (checkcontent(bhed) == 4)
+		return (re_sort(head, bhed, 'a'));
+	if (checkcontent(bhed) == 0)
     {
         swap(bhed, c);
-		return (resorthirdb(head, bhed, c));
+		return (resorthirdb(bhed, head, c));
     }
-    else if (checkcontent(head) == 1)
+    else if (checkcontent(bhed) == 1)
 	{
         swap(bhed, c);
 		push(&bhed, &head, 'a');
 		swap(bhed, c);
 		push(&head, &bhed, c);
 	}
-    else if (checkcontent(head) == 2)
+    else if (checkcontent(bhed) == 2)
     {
         push(&bhed, &head, c);
         swap(bhed, c);
         push(&head, &bhed, 'b');
         swap(bhed, c);
     }
-    else if (checkcontent(head) == 3)
+    else if (checkcontent(bhed) == 3)
         swap(bhed, c);
     else
     {
@@ -73,8 +76,9 @@ void	resorthirdb(t_head *head, t_head *bhed, char c)
 
 void	sorthirdb(t_head *bhed, t_head *head, char c) // 무엇이 문제? 
 {
-//	printf("sorthirdb\n");//
-	if (ft_lstlen(bhed) != checksort(bhed, 'b') + 1)
+	printf("sorthirdb\n");//
+	printf("%d %d\n", ft_lstlen(bhed), checksort(bhed, 'b'));//
+	if (ft_lstlen(bhed) != 3)
 		return (resorthirdb(bhed, head, c));
 	if (sortleft(bhed) == 0)
 		return (re_sort(head, bhed, 'a'));
@@ -94,6 +98,7 @@ void	sorthirdb(t_head *bhed, t_head *head, char c) // 무엇이 문제?
 
 void	resorthird(t_head *head, t_head *bhed, char c)
 {
+	printf("resorthird\n");//
 	if (checkcontent(head) == 1)
 	{
 		rotate(&head, c);
@@ -130,8 +135,8 @@ void	sorthird(t_head *head, t_head *bhed, char c)
 {
 	t_li	*li;
 
-//	printf("sorthird\n");
-	if (ft_lstlen(head) != checksort(head, 'a') + 1)
+	printf("sorthird\n");//
+	if (ft_lstlen(head) != 3 && checkcontent(head) != 0)
 		return (resorthird(head, bhed, c));
 	li = head->fir;
 	if (sortright(head) == 0 && ft_lstlen(bhed) != 0)

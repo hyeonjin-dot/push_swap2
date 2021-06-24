@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:11 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/23 22:58:38 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/24 15:23:35 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int			sortleft(t_head *head);
 int			checksort(t_head *head, char c);
 void		sorthird(t_head *head, t_head *bhed, char c);
 void		sorthirdb(t_head *bhed, t_head *head, char c);
+void		resorthird(t_head *head, t_head *bhed, char c);
+void		resorthirdb(t_head *head, t_head *bhed, char c);
 void		sortfive(t_head *head, t_head *bhed);
+void		sortfiveb(t_head *head, t_head *bhed);
 void		ft_error();
 int			ft_lstlen(t_head *head);
 void		quicksort(int *lst, int i, int j);

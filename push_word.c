@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/20 17:04:35 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/06/24 16:14:15 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	revrotate(t_head **head, char c)
 	t_li	*lst;
 	int		i;
 
+	if (ft_lstlen(*head) == 1)
+		return ;
 	i = 0;
 	tmp = (*head)->fir;
 	lst = (*head)->fir->next;
@@ -69,6 +71,8 @@ void	rotate(t_head **head, char c)
 	t_li	*lst;
 	int		i;
 
+	if (ft_lstlen(*head) == 1)
+		return ;
 	i = 0;
 	tmp = (*head)->fir;
 	lst = tmp->next;
