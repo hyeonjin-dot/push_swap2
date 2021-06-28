@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:23:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/23 22:54:04 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/28 17:27:35 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,9 @@ int	main(int argc, char *argv[])
 	}
 	checksame(head);
 	sort(head, bhed);
+	li_free(head);
 	free(head);
+	li_free(bhed);
 	free(bhed);
 	return (0);
 }

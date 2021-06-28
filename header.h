@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:11 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/24 15:23:35 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/28 17:40:51 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_head
 
 void		li_init(t_head *head);
 void		li_insert(t_head *head, int data);
+void		li_free(t_head *head);
 void		swap(t_head *head, char c);
 void		rotate(t_head **head, char c);
 void		push(t_head **head, t_head **bhed, char c);
@@ -48,7 +49,8 @@ void		sorthirdb(t_head *bhed, t_head *head, char c);
 void		resorthird(t_head *head, t_head *bhed, char c);
 void		resorthirdb(t_head *head, t_head *bhed, char c);
 void		sortfive(t_head *head, t_head *bhed);
-void		sortfiveb(t_head *head, t_head *bhed);
+void		sortfiveb(t_head *bhed, t_head *head);
+void		lastsort(t_head *head, t_head *bhed);
 void		ft_error();
 int			ft_lstlen(t_head *head);
 void		quicksort(int *lst, int i, int j);

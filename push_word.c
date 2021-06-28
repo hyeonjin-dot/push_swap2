@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/24 16:14:15 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/25 19:22:17 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	revrotate(t_head **head, char c)
 	t_li	*lst;
 	int		i;
 
-	if (ft_lstlen(*head) == 1)
+	if (ft_lstlen(*head) <= 1)
 		return ;
 	i = 0;
 	tmp = (*head)->fir;
@@ -71,7 +71,7 @@ void	rotate(t_head **head, char c)
 	t_li	*lst;
 	int		i;
 
-	if (ft_lstlen(*head) == 1)
+	if (ft_lstlen(*head) <= 1)
 		return ;
 	i = 0;
 	tmp = (*head)->fir;
@@ -95,7 +95,11 @@ void	push(t_head **head, t_head **bhed, char c)
 {
 	t_li	*frm;
 	t_li	*to;
+	int		i;
 
+	i = ft_lstlen(*head);
+	if (i < 1)
+		return ;
 	frm = (*head)->fir;
 	if ((*bhed)->fir == NULL)
 	{
@@ -110,6 +114,8 @@ void	push(t_head **head, t_head **bhed, char c)
 		(*bhed)->fir = frm;
 		frm->next = to;
 	}
+	if (i == 1)
+		(*head)->fir = NULL;
 	if (c == 'a')
 		write(1, "pa\n", 3);
 	else

@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/24 16:57:01 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/26 16:50:46 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		checkcontent(t_head *head)
 
 void	resorthirdb(t_head *bhed, t_head *head, char c)
 {
-    printf("resorthirdb\n"); //
+//	printf("resorthirdb\n"); //
 	if (checkcontent(bhed) == 4)
 		return (re_sort(head, bhed, 'a'));
 	if (checkcontent(bhed) == 0)
@@ -56,9 +56,9 @@ void	resorthirdb(t_head *bhed, t_head *head, char c)
 	}
     else if (checkcontent(bhed) == 2)
     {
-        push(&bhed, &head, c);
+        push(&bhed, &head, 'a');
         swap(bhed, c);
-        push(&head, &bhed, 'b');
+        push(&head, &bhed, c);
         swap(bhed, c);
     }
     else if (checkcontent(bhed) == 3)
@@ -76,8 +76,7 @@ void	resorthirdb(t_head *bhed, t_head *head, char c)
 
 void	sorthirdb(t_head *bhed, t_head *head, char c) // 무엇이 문제? 
 {
-	printf("sorthirdb\n");//
-	printf("%d %d\n", ft_lstlen(bhed), checksort(bhed, 'b'));//
+//	printf("sorthirdb\n");//
 	if (ft_lstlen(bhed) != 3)
 		return (resorthirdb(bhed, head, c));
 	if (sortleft(bhed) == 0)
@@ -93,12 +92,12 @@ void	sorthirdb(t_head *bhed, t_head *head, char c) // 무엇이 문제?
 	}
 	if (sortleft(bhed) == 0)
 		return (re_sort(head, bhed, 'a'));
-	return (sorthirdb(bhed, head, c));
+	return (re_sortb(bhed, head, c));
 }
 
 void	resorthird(t_head *head, t_head *bhed, char c)
 {
-	printf("resorthird\n");//
+//	printf("resorthird\n");//
 	if (checkcontent(head) == 1)
 	{
 		rotate(&head, c);
@@ -135,7 +134,7 @@ void	sorthird(t_head *head, t_head *bhed, char c)
 {
 	t_li	*li;
 
-	printf("sorthird\n");//
+//	printf("sorthird\n");//
 	if (ft_lstlen(head) != 3 && checkcontent(head) != 0)
 		return (resorthird(head, bhed, c));
 	li = head->fir;
@@ -151,6 +150,6 @@ void	sorthird(t_head *head, t_head *bhed, char c)
 	else
 		revrotate(&head, c);
 	if (sortright(head) == 0 && ft_lstlen(bhed) == 0)
-		return ;
+		return (lastsort(head, bhed));
 	return (re_sort(head, bhed, c));
 }

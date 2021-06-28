@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:45 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/22 14:49:14 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/06/26 15:22:03 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,25 @@ void	li_insert(t_head *head, int data)
 	while (last->next != NULL)
 		last= last->next;
 	last->next = new;
+}
+
+void	li_free(t_head *head)
+{
+	t_li	*li;
+	t_li	*tmp;
+	int		i;
+	int		j;
+
+	li = head->fir;
+	tmp = NULL;
+	i = ft_lstlen(head);
+	j = 0;
+	while (i > j)
+	{
+		tmp = li;
+		li = li->next;
+		free(tmp);
+		j++;
+	}
+	exit (0);
 }

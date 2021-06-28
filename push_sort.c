@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:05:35 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/24 16:57:07 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/06/26 16:24:43 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int		ft_lstlen(t_head *head)
 {
 	t_li	*li;
 	int		i;
-	
-	if (head->fir == NULL)
-		return (0);
+
 	i = 1;
 	li = head->fir;
+	if (li == NULL)
+		return (0);
 	while (li->next != NULL)
 	{
 		li = li->next;
@@ -34,6 +34,8 @@ int		sortright(t_head *head)
 	t_li	*li;
 	int		len;
 
+	if (ft_lstlen(head) <= 1)
+		return (0);
 	li = head->fir;
 	len = ft_lstlen(head) - 1;
 	while (len > 0)
