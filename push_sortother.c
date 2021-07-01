@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 15:37:21 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/28 22:01:30 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/01 22:08:12 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ int		makepivot(t_head *head, char c, char idx)
 	len = checksort(head, c);
 	lst = mklst(head);
 	quicksort(lst, 0, len);
-	if (idx == 'b') // ㅁ원래 a₩
+	if (idx == 'a') // b
 		len = (len / 3);
 	else//
-		len = 2 *  (len / 3);//
+		len = 2 * (len / 3);//
 	x = lst[len];
 	return (x);
 }
@@ -119,15 +119,7 @@ void	lastsort(t_head *head, t_head *bhed)
 				len--;
 			}
 			if (sortright(head) == 0 && ft_lstlen(bhed) == 0)
-			{
-			/*	li = head->fir; //
-				while (li != NULL)
-				{
-					printf("%d\n", li->data);
-					li = li->next;
-				} */
 				exit (0);
-			}
 			else
 				re_sort(head, bhed, 'a');
 		}
@@ -141,23 +133,11 @@ void	lastsort(t_head *head, t_head *bhed)
 void    re_sortb(t_head *bhed, t_head *head, char c)
 {
 	int		len;
-	t_li	*li;//
 
 //	printf("re_sortb\n"); //
 	if (sortleft(bhed) == 0)
 		return (lastsort(head, bhed));
 	len = checksort(bhed, 'b') + 1;
-	li = bhed->fir; //
-	if (len == 5)//
-	{
-		while (len > 0)
-		{
-		//	printf("%d\n", li->data);
-			li = li->next;
-			len--;
-		}
-		len = 5;//
-	}//
 	if (len <= 1)
 		return (lastsort(head, bhed));
 	else if (len == 2)
@@ -217,7 +197,7 @@ int		breakrotate(t_head *head, char c, int x)
 	{
 		if (c == 'b')
 		{
-			if (lst[i] <= x)
+			if (lst[i] < x)
 				num++;
 			else
 				break ;
@@ -239,7 +219,6 @@ void	sortotherb(t_head *bhed, t_head *head)
     int		len;
     int		x;
 	int		y;
-	int		z;
 	int		i;
 	int		j;
 
@@ -247,35 +226,24 @@ void	sortotherb(t_head *bhed, t_head *head)
 	x = makepivot(bhed, 'b', 'b'); // 원래는 b b 
 	len = checksort(bhed, 'b') + 1;
 	i = 0;
-	j = ft_lstlen(bhed) - checksort(bhed, 'b');
+	j = ft_lstlen(bhed) - checksort(bhed, 'b') - 1;
 	while (len > 0)
 	{
-		if (bhed->fir->data > x)
+		if (bhed->fir->data >= x)
 		{
 			push(&bhed, &head, 'a');
-			if (checksort(head, 'a')  == 5)
+			if (checksort(head, 'a') == 1)
+				swap(head, 'a');
+			if (checksort(head, 'a') == 4)
 				sortfive(head, bhed);
 			if (checksort(head, 'a') == 2)
 				sorthird(head, bhed, 'a');
-			/*if (revchecksort(head, 'a') == 5)
-			{
-				y = ft_lstlen(head);
-				z = y;
-				while (y-- > 5)
-					push(&head, &bhed, 'b');
-				sortfive(head, bhed); //
-			//	while (y++ <= z)
-			//		push(&bhed, &head, 'a');
-			}*/
 			if (revchecksort(head, 'a') == 3)
 			{
 				y = ft_lstlen(head);
-				z = y;
 				while (y-- > 3)
 					push(&head, &bhed, 'b');
-				sorthird(head, bhed, 'a'); //
-			//	while (y++ <= z)
-			//		push(&bhed, &head, 'a');
+				sorthird(head, bhed, 'a');
 			}
 		}
 		else
@@ -287,21 +255,16 @@ void	sortotherb(t_head *bhed, t_head *head)
 		}
 		len--;
 	}
-	while (j != 1 && i-- > 0)
+	while (j != 0 && i-- > 0)
 	{
 		if (sortleft(bhed) == 0)
 			break ;
 		revrotate(&bhed, 'b');
 	}
-//	if (bhed->fir->data < bhed->fir->next->data)
-//		swap(bhed, 'b');//
+	if (checksort(bhed, 'b') == 1)
+		swap(bhed, 'b');
 	if (sortleft(bhed) == 0)
-	{
-		if (sortright(head) == 0)
-			lastsort(head, bhed);
-		else
-			re_sort(head, bhed, 'a');
-	}
+		lastsort(head, bhed);
 	else
 		re_sortb(bhed, head, 'b');
 }
@@ -313,51 +276,31 @@ void	sortother(t_head *head, t_head *bhed)
 	int		j;
 	int		x;
 	int		y;
-	int		z;
+	int		a;
 
 //	printf("sortother\n"); //
-//	printf("checksort : %d\n", ft_lstlen(head) - checksort(head, 'a') + 1); //
-	x = makepivot(head, 'a', 'b');
-	len = checksort(head, 'a') + 1;	// 원래는 ft_lstlen
+//	printf("sorted : %d\n", ft_lstlen(head) - checksort(head, 'a') + 1); //
+	x = makepivot(head, 'a', 'a');
+	len = checksort(head, 'a') + 1;
 	i = 0;
 	j = ft_lstlen(head) - checksort(head, 'a') - 1;
 	while (len > 0)
 	{
-		/*if (j == 0 && y > (head->fir->data))
-		{
-			push(&head, &bhed, 'b');
-			rotate(&bhed, 'b');
-			if (checksort(bhed, 'b') + 1 == 5)
-				sortfiveb(bhed, head);
-			if (checksort(bhed, 'b') == 2)
-				sorthirdb(bhed, head, 'b');
-		}*/
 		if (head->fir->data < x)
 		{
 			push(&head, &bhed, 'b');
+			if (checksort(bhed, 'b') == 1)
+				swap(bhed, 'b'); 
 			if (checksort(bhed, 'b') == 4)
 				sortfiveb(bhed, head);
 			if (checksort(bhed, 'b') == 2)
-				sorthirdb(bhed, head, 'b');
-			/*if (revchecksort(bhed, 'b') == 5)
-			{
-				y = ft_lstlen(bhed);
-				z = y;
-				while (y-- > 5)
-					push(&bhed, &head, 'a');
-				sortfiveb(bhed, head); //
-			//	while (y++ <= z)
-				//	push(&head, &bhed, 'b');
-			}*/
+				sorthirdb(bhed, head, 'b');	
 			if (revchecksort(bhed, 'b') == 3)
 			{
 				y = ft_lstlen(bhed);
-				z = y;
 				while (y-- > 3)
 					push(&bhed, &head, 'a');
-				sorthirdb(bhed, head, 'b'); //
-			//	while (y++ <= z)
-			//		push(&head, &bhed, 'b');
+				sorthirdb(bhed, head, 'b');
 			}
 		}
 		else
@@ -375,7 +318,5 @@ void	sortother(t_head *head, t_head *bhed)
 			break ;
 		revrotate(&head, 'a');
 	}
-//	if (head->fir->data > head->fir->next->data)
-//		swap(head, 'a');//
 	lastsort(head, bhed);
 }

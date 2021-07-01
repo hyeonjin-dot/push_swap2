@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 16:53:15 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/28 18:41:38 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/01 21:16:05 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int findnum(t_head *head, char c)
 
 	lst = mklst(head);
 	len = checksort(head, c);
-	quicksort(lst, 0, len - 1);
+	quicksort(lst, 0, len);
 	if (c == 'a')
 		num = lst[1];
 	else
-		num = lst[4];
+		num = lst[3];
 	return (num);
 }
 
