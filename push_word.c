@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/25 19:22:17 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/07 17:09:34 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	swap(t_head *head, char c)
 	one = zero->next;
 	ft_swap(&(zero->data), &(one->data));
 	if (c == 'a')
-		write(1, "sa\n", 3);
+		write(1, "sa", 2);
 	else
-		write(1, "sb\n", 3);
+		write(1, "sb", 2);
+	write(1, "\n", 1);
 }
 
 void	revrotate(t_head **head, char c) 
@@ -60,9 +61,10 @@ void	revrotate(t_head **head, char c)
 	}
 	tmp->next = NULL;
 	if (c == 'a')
-		write(1, "rra\n", 4);
+		write(1, "rra", 3);
 	else
-		write(1, "rrb\n", 4);
+		write(1, "rrb", 3);
+	write(1, "\n", 1);
 }
 
 void	rotate(t_head **head, char c)
@@ -85,9 +87,10 @@ void	rotate(t_head **head, char c)
 	}
 	lst->next = tmp;
 	if (c == 'a')
-		write(1, "ra\n", 3);
+		write(1, "ra", 2);
 	else
-		write(1, "rb\n", 3);
+		write(1, "rb", 2);
+	write(1, "\n", 1);
 	return ;
 }
 
@@ -117,7 +120,8 @@ void	push(t_head **head, t_head **bhed, char c)
 	if (i == 1)
 		(*head)->fir = NULL;
 	if (c == 'a')
-		write(1, "pa\n", 3);
+		write(1, "pa", 2);
 	else
-		write(1, "pb\n", 3);
+		write(1, "pb", 2);
+	write(1, "\n", 1);
 }

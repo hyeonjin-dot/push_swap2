@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:33 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/19 22:25:20 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/07 19:58:38 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,51 @@ void	ft_error()
 {
 	write(1, "Error\n", 7);
 	exit (1);
+}
+
+void	crotate(t_head **head, char c)
+{
+	t_li	*tmp;
+	t_li	*lst;
+	int		i;
+
+	if (ft_lstlen(*head) <= 1)
+		return ;
+    i = 0;
+    tmp = (*head)->fir;
+    lst = tmp->next;
+    (*head)->fir = lst;
+    tmp->next = NULL;
+    while (lst->next != NULL)
+    {
+        lst = lst->next;
+        i++;
+    }
+    lst->next = tmp;
+}
+
+void	crevrotate(t_head **head, char c)
+{
+	t_li	*tmp;
+    t_li	*lst;
+    int		i;
+
+    if (ft_lstlen(*head) <= 1)
+    	return ;
+    i = 0;
+    tmp = (*head)->fir;
+    lst = (*head)->fir->next;
+    while (lst->next != NULL)
+    {
+        lst = lst->next;
+        i++;
+    }
+    (*head)->fir = lst;
+    lst->next = tmp;
+    while (i > 0)
+    {
+        tmp = tmp->next;
+        i--;
+    }
+    tmp->next = NULL;
 }

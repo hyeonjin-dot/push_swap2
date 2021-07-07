@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/01 18:38:27 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/07 17:09:01 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ void	resorthird(t_head *head, t_head *bhed, char c)
 		swap(head, c);
 		revrotate(&head, c);
 	}
-	if (sortright(head) == 0)
-		return (re_sortb(bhed, head, 'b'));
+	if (sortright(head) == 0 && sortleft(bhed) != 0)
+		return (re_sortb(bhed, head, 'b')); //
 	return (re_sort(head, bhed, c));
 }
 
@@ -137,6 +137,8 @@ void	sorthird(t_head *head, t_head *bhed, char c)
 //	printf("sorthird\n");//
 	if (ft_lstlen(head) != 3 && checkcontent(head) != 0)
 		return (resorthird(head, bhed, c));
+	if (sortright(head) == 0)//
+		return(re_sort(head, bhed, c)); //
 	li = head->fir;
 	if (sortright(head) == 0 && ft_lstlen(bhed) != 0)
 		return (re_sortb(bhed, head, 'b'));
@@ -149,7 +151,7 @@ void	sorthird(t_head *head, t_head *bhed, char c)
 	}	
 	else
 		revrotate(&head, c);
-	if (sortright(head) == 0 && ft_lstlen(bhed) == 0)
+	if (sortright(head) == 0)
 		return (lastsort(head, bhed));
 	return (re_sort(head, bhed, c));
 }

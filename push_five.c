@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 16:53:15 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/01 21:16:05 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/07 17:09:17 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,43 @@ void	sortfiveb(t_head *bhed, t_head *head)
     i = 0;
     j = 0;
 	k = 0;
-    while (j < 2)
-    {
-        while (i < count[j] && i < 5)
-        {
-            rotate(&bhed, 'b');
-            li = bhed->fir;
-            i++;
-			k++;
-        }
-        push(&bhed, &head, 'a');
-		j++;
-        i++;
-    }
-	while (ft_lstlen(bhed) != 3 && k-- > 0)
+	if (count[0] < 3)
+	{
+		while (j < 2)
+		{
+			while (i < count[j] && i < 5)
+			{
+				rotate(&bhed, 'b');
+				li = bhed->fir;
+				i++;
+				k++;
+			}
+			push(&bhed, &head, 'a');
+			j++;
+			i++;
+		}
+	}
+	i = 4;
+	if (count[0] >= 3)
+	{
+		while (j < 2)
+		{
+			while (i > count[j] && i >= 0)
+			{
+				revrotate(&bhed, 'b');
+				li = bhed->fir;
+				i--;
+				k++;
+			}
+			push(&bhed, &head, 'a');
+			j++;
+			i--;
+		}
+	}
+	while (count[0] < 3 && ft_lstlen(bhed) != 3 && k-- > 0)
 		revrotate(&bhed, 'b');
+	while (count[0] >= 3 && ft_lstlen(bhed) != 3 && k-- > 0)
+		rotate(&bhed, 'b');
 	if (head->fir->data > head->fir->next->data)
 		swap(head, 'a');
 	free(count);//
@@ -108,20 +130,42 @@ void	sortfive(t_head *head, t_head *bhed) // b에 아무것도 없고 a 길이�
 	i = 0;
 	j = 0;
 	k = 0;
-	while (j < 2)
+	if (count[0] < 3)
 	{
-		while (i < count[j] && i < 5)
+		while (j < 2)
 		{
-			rotate(&head, 'a');
-			li = head->fir;
+			while (i < count[j] && i < 5)
+			{
+				rotate(&head, 'a');
+				li = head->fir;
+				i++;
+				k++;
+			}
+			push(&head, &bhed, 'b');
+			j++;
 			i++;
-			k++;
 		}
-		push(&head, &bhed, 'b');
-		j++;
-		i++;
 	}
-	while (ft_lstlen(head) != 3 && k-- > 0)
+	i = 4;
+	if (count[0] >= 3)
+	{
+		while (j < 2)
+		{
+			while (i > count[j] && i >= 0)
+			{
+				revrotate(&head, 'a');
+				li = head->fir;
+				i--;
+				k++;
+			}
+			push(&head, &bhed, 'b');
+			j++;
+			i--;
+		}
+	}
+	while (count[0] < 3 && ft_lstlen(head) != 3 && k-- > 0)
+		revrotate(&head, 'a');
+	while (count[0] >= 3 && ft_lstlen(head) != 3 && k-- > 0)
 		revrotate(&head, 'a');
 	if (bhed->fir->data < bhed->fir->next->data)
 		swap(bhed, 'b');
@@ -132,8 +176,8 @@ void	sortfive(t_head *head, t_head *bhed) // b에 아무것도 없고 a 길이�
 		resorthird(head, bhed, 'a');
 	push(&bhed, &head, 'a');
 	push(&bhed, &head, 'a');
-	if (sortright(head) == 0 && ft_lstlen(bhed) != 0)
-		return (re_sortb(bhed, head, 'b'));
+	if (sortright(head) == 0 && sortleft(bhed) != 0)
+		return (re_sortb(bhed, head, 'b'));//
 	else
-		return (re_sort(head, bhed, 'a'));
+		return (lastsort(head, bhed));
 }

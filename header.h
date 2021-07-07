@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:11 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/01 17:53:40 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/07 22:57:37 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void		li_insert(t_head *head, int data);
 void		li_free(t_head *head);
 void		swap(t_head *head, char c);
 void		rotate(t_head **head, char c);
+void		crotate(t_head **head, char c);//
 void		push(t_head **head, t_head **bhed, char c);
 void		revrotate(t_head **head, char c);
+void		crevrotate(t_head **head, char c);//
 void		sort(t_head *head, t_head *bhed);
 void		re_sort(t_head *head, t_head *bhed, char c);
 void		re_sortb(t_head *bhed, t_head *head, char c);
