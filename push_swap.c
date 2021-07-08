@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:23:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/06/28 17:27:35 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/08 16:25:17 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,9 @@ int	main(int argc, char *argv[])
 	free(head);
 	li_free(bhed);
 	free(bhed);
+/*	while(1)
+	{
+
+	}*/
 	return (0);
 }

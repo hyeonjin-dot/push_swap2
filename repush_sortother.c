@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_sortother.c                                   :+:      :+:    :+:   */
+/*   repush_sortother.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 15:37:21 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 16:50:45 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/08 16:51:44 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ int		makepivot(t_head *head, char c, char idx)
 	lst = mklst(head);
 	quicksort(lst, 0, len);
 	if (idx == 'a')
-		len = (len / 2);
-//	else
-//		len = 2 * (len / 3);
+		len = (len / 3);
+	else
+		len = 2 * (len / 3);
 	x = lst[len];
 	return (x);
 }
@@ -105,7 +105,6 @@ void	lastsort(t_head *head, t_head *bhed)
 
 //	printf("lastsort\n");//
 //	printf("%d\n", checksort(head, 'a') + 1); //
-//	printf("%d\n", sortleft(bhed));//
 	if (sortright(head) == 0)
 	{
 		if (sortleft(bhed) == 0 || ft_lstlen(bhed) == 0)
@@ -123,10 +122,8 @@ void	lastsort(t_head *head, t_head *bhed)
 			else
 				re_sort(head, bhed, 'a');
 		}
-		else if (sortleft(bhed) != 0)
-			re_sortb(bhed, head, 'b');
 		else
-			re_sort(head, bhed, 'a');
+			re_sortb(bhed, head, 'b');
 	}
 	else
 		re_sort(head, bhed, 'a');
@@ -138,7 +135,6 @@ void    re_sortb(t_head *bhed, t_head *head, char c)
 
 //	printf("re_sortb\n"); //	
 //	printf("%d\n", checksort(bhed, 'b') + 1);//
-//	printf("%d\n", sortleft(bhed));//
 	if (sortleft(bhed) == 0)
 		return (lastsort(head, bhed));
 	len = checksort(bhed, 'b') + 1;
@@ -219,30 +215,103 @@ int		breakrotate(t_head *head, char c, int x)
 	return (num);
 }
 
-void	sortotherb(t_head *bhed, t_head *head) // 정렬 필요 아래처럼 하면 될 듯
+int		checkrotate(t_head *head, char c, int pv)//
+{
+	int		*lst;
+	int		i;
+
+	i = 0;
+	lst = mklst(head);
+	if (c == 'a')
+	{
+		while (lst[i])
+		{
+			if (lst[i] < pv)
+				return (i);
+			i++;
+		}
+	}
+	else
+	{
+		while (lst[i])
+		{
+			if (lst[i] >= pv)
+				return (i);
+			i++;
+		}
+	}
+	return (0);
+}
+
+void	sortotherb(t_head *bhed, t_head *head)
 {
     int		len;
+    int		x;
+	int		y;
+	int		i;
+	int		j;
+	int		k;
 
 //	printf("sortotherb\n"); //
-	if (head->num != 0)
-		len = head->num;
-	else
-		len = ft_lstlen(head);
-	head->num = 0;
-//	printf("%d\n", lenb); //
-	while (len-- > 0)
+	x = makepivot(bhed, 'b', 'b'); // 원래는 b b 
+	len = checksort(bhed, 'b') + 1;//
+	i = 0;
+	j = ft_lstlen(bhed) - checksort(bhed, 'b') - 1;
+	k = checkrotate(bhed, 'b', x) - ((ft_lstlen(bhed) - 1) / 2);
+	while (len > 0)
 	{
-		if (len > 1 && ft_lstlen(bhed) > 1 && bhed->fir->data < bhed->fir->next->data)
-			swap(bhed, 'b');
-		push(&bhed, &head, 'a');
-		if (checksort(head, 'a') == 4)
-			sortfive(head, bhed);
-		if (checksort(head, 'a') == 2)
-			sorthird(head, bhed, 'a');
-		if (checksort(head, 'a') == 1)
-			swap(head, 'a');
+		if (bhed->fir->data >= x)
+		{
+			push(&bhed, &head, 'a');
+		/*	if (checksort(head, 'a') == 4)
+				sortfive(head, bhed);
+			if (checksort(head, 'a') == 2)
+				sorthird(head, bhed, 'a');*/
+			if (checksort(head, 'a') <= 2 || checksort(head, 'a') == 4)
+				re_sort(head, bhed, 'a');
+			else if (revchecksort(head, 'a') == 3)
+			{
+				y = ft_lstlen(head);
+				while (y-- > 3)
+					push(&head, &bhed, 'b');
+				sorthird(head, bhed, 'a');
+			}
+		}
+		else
+		{
+			if (k <= 0)
+			{
+				if (breakrotate(bhed, 'b', x) >= len)
+					break;
+				rotate(&bhed, 'b');
+			}
+			else
+			{
+				if (breakrotate(bhed, 'b', x) >= ft_lstlen(bhed))
+					break;
+				revrotate(&bhed, 'b');
+			}
+			i++;
+		}
+		len--;
 	}
-	return (re_sort(head, bhed, 'a'));
+	if (j < i)
+		i = j;
+	while (j != 0 && i-- > 0)
+	{
+		if (sortleft(bhed) == 0)
+			break ;
+		if ((j >= i && k <= 0) || (j < i && k > 0))
+			revrotate(&bhed, 'b');
+		else
+			rotate(&bhed, 'b');
+	}
+	//if (checksort(bhed, 'b') == 1)
+	//	swap(bhed, 'b');
+	if (checksort(bhed, 'b') + 1 <= 3)
+		lastsort(head, bhed);
+	else
+		sortother(head, bhed);
 }
 
 void	sortother(t_head *head, t_head *bhed)
@@ -251,39 +320,51 @@ void	sortother(t_head *head, t_head *bhed)
 	int		i;
 	int		j;
 	int		x;
+	int		y;
+//	int		k;
 
 //	printf("sortother\n"); //
-//	printf("%d\n", ft_lstlen(head));//
+//	printf("%d\n", ft_lstlen(head));
 //	printf("sorted : %d\n", ft_lstlen(head) - checksort(head, 'a') - 1); //
-	head->num = 0;
 	x = makepivot(head, 'a', 'a'); // 원래 aa
 	len = checksort(head, 'a') + 1;
 	i = 0;
 	j = ft_lstlen(head) - checksort(head, 'a') - 1;
+	y = checkrotate(head, 'a', x) - ((ft_lstlen(head) - 1) / 2); //
 	while (len > 0)
 	{
-		if (head->fir->data <= x)
-		{
+		if (head->fir->data < x) //원래 x
 			push(&head, &bhed, 'b');
-			head->num++;
-		}
 		else
 		{
-			if (breakrotate(head, 'a', x) >= len)
-				break ;
+			if (y <= 0)
+			{
+				if (breakrotate(head, 'a', x) >= len)
+					break ;
 			rotate(&head, 'a');
+			}
+			else
+			{
+				if (breakrotate(head, 'a', x) >= ft_lstlen(head))
+					break ;
+				revrotate(&head, 'a');
+			}
 			i++;
 		}
 		len--;
 	}
+	if (j < i)
+		i = j;
 	while (j != 0 && i-- > 0)
 	{
 		if (sortright(head) == 0)
 			break ;
-		revrotate(&head, 'a');
+		if ((j >= i && y <= 0) || (j < i && y > 0))
+			revrotate(&head, 'a');
+		else
+			rotate(&head, 'a');
 	}
-	if (checksort(head, 'a') + 1 <= 5)
-		re_sort(head, bhed, 'a');
+	if (checksort(head, 'a') + 1 <= 3)
+		lastsort(head, bhed);
 	else
 		sortother(head, bhed);
-}

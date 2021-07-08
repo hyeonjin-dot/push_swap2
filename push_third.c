@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/07 17:09:01 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/08 15:34:49 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	resorthird(t_head *head, t_head *bhed, char c)
 	}
 	if (sortright(head) == 0 && sortleft(bhed) != 0)
 		return (re_sortb(bhed, head, 'b')); //
-	return (re_sort(head, bhed, c));
+	return ;//(re_sort(head, bhed, c));
 }
 
 void	sorthird(t_head *head, t_head *bhed, char c)

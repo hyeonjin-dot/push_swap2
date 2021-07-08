@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:45 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/07 22:57:29 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/08 15:56:10 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	li_init(t_head *head)
 {
 	head->fir = NULL;
+	head->num = 0;
 }
 
 void	li_insert(t_head *head, int data)

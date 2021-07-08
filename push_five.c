@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 16:53:15 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/07 17:09:17 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/08 16:13:56 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	sortfiveb(t_head *bhed, t_head *head)
     i = 0;
     j = 0;
 	k = 0;
-	if (count[0] < 3)
-	{
+	//if (count[0] < 3)
+	//{
 		while (j < 2)
 		{
 			while (i < count[j] && i < 5)
@@ -68,7 +68,7 @@ void	sortfiveb(t_head *bhed, t_head *head)
 			j++;
 			i++;
 		}
-	}
+/*	}
 	i = 4;
 	if (count[0] >= 3)
 	{
@@ -85,7 +85,7 @@ void	sortfiveb(t_head *bhed, t_head *head)
 			j++;
 			i--;
 		}
-	}
+	}*/
 	while (count[0] < 3 && ft_lstlen(bhed) != 3 && k-- > 0)
 		revrotate(&bhed, 'b');
 	while (count[0] >= 3 && ft_lstlen(bhed) != 3 && k-- > 0)
@@ -130,8 +130,8 @@ void	sortfive(t_head *head, t_head *bhed) // b에 아무것도 없고 a 길이�
 	i = 0;
 	j = 0;
 	k = 0;
-	if (count[0] < 3)
-	{
+	//if (count[0] < 3)
+	//{
 		while (j < 2)
 		{
 			while (i < count[j] && i < 5)
@@ -145,7 +145,7 @@ void	sortfive(t_head *head, t_head *bhed) // b에 아무것도 없고 a 길이�
 			j++;
 			i++;
 		}
-	}
+/*	}
 	i = 4;
 	if (count[0] >= 3)
 	{
@@ -162,7 +162,7 @@ void	sortfive(t_head *head, t_head *bhed) // b에 아무것도 없고 a 길이�
 			j++;
 			i--;
 		}
-	}
+	}*/
 	while (count[0] < 3 && ft_lstlen(head) != 3 && k-- > 0)
 		revrotate(&head, 'a');
 	while (count[0] >= 3 && ft_lstlen(head) != 3 && k-- > 0)
@@ -177,7 +177,7 @@ void	sortfive(t_head *head, t_head *bhed) // b에 아무것도 없고 a 길이�
 	push(&bhed, &head, 'a');
 	push(&bhed, &head, 'a');
 	if (sortright(head) == 0 && sortleft(bhed) != 0)
-		return (re_sortb(bhed, head, 'b'));//
+		return ;// (re_sortb(bhed, head, 'b'));//
 	else
-		return (lastsort(head, bhed));
+		return (sortother(head, bhed));
 }

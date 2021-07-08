@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:33 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/07 19:58:38 by jeonghyeo        ###   ########.fr       */
+/*   Updated: 2021/07/08 11:59:52 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_error()
 	exit (1);
 }
 
-void	crotate(t_head **head, char c)
+void	crotate(t_head **head)
 {
 	t_li	*tmp;
 	t_li	*lst;
@@ -69,7 +69,7 @@ void	crotate(t_head **head, char c)
     lst->next = tmp;
 }
 
-void	crevrotate(t_head **head, char c)
+void	crevrotate(t_head **head)
 {
 	t_li	*tmp;
     t_li	*lst;
