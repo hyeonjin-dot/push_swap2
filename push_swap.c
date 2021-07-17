@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:23:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 16:25:17 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/16 21:47:11 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	checksame(t_head *head)
 	return ;
 }
 
-int	main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	t_head	*head;
 	t_head	*bhed;
@@ -96,10 +96,7 @@ int	main(int argc, char *argv[])
 	i = 1;
 	head = (t_head*)malloc(sizeof(t_head*));
 	bhed = (t_head*)malloc(sizeof(t_head*));
-	li_init(head);
-	li_init(bhed);
-	if (argc <= 1)
-		return (0);
+	li_init(head, bhed);
 	while (i < argc)
 	{
 		j = check_num(argv[i]);
@@ -112,9 +109,7 @@ int	main(int argc, char *argv[])
 	checksame(head);
 	sort(head, bhed);
 	li_free(head);
-	free(head);
 	li_free(bhed);
-	free(bhed);
 /*	while(1)
 	{
 

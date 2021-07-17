@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 14:15:13 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/16 22:10:09 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,13 @@ void	revrotate(t_head **head, char c)
 	}
 	(*head)->fir = lst;
 	lst->next = tmp;
-	while (i > 0)
-	{
+	while (i-- > 0)
 		tmp = tmp->next;
-		i--;
-	}
 	tmp->next = NULL;
 	if (c == 'a')
-		write(1, "rra", 3);
+		write(1, "rra\n", 4);
 	else
-		write(1, "rrb", 3);
-	write(1, "\n", 1);
+		write(1, "rrb\n", 4);
 }
 
 void	rotate(t_head **head, char c)
@@ -117,11 +113,8 @@ void	push(t_head **head, t_head **bhed, char c)
 		(*bhed)->fir = frm;
 		frm->next = to;
 	}
-	if (i == 1)
-		(*head)->fir = NULL;
 	if (c == 'a')
-		write(1, "pa", 2);
+		write(1, "pa\n", 3);
 	else
-		write(1, "pb", 2);
-	write(1, "\n", 1);
+		write(1, "pb\n", 3);
 }

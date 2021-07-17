@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:11 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 15:56:21 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/17 16:28:35 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ typedef struct		s_li
 typedef struct		s_head
 {
 	struct s_li*	fir;
-	int				num;
 }					t_head;
 
-void		li_init(t_head *head);
+void		li_init(t_head *head, t_head *bhed);
 void		li_insert(t_head *head, int data);
 void		li_free(t_head *head);
 void		swap(t_head *head, char c);
 void		rotate(t_head **head, char c);
-void		crotate(t_head **head);//
 void		push(t_head **head, t_head **bhed, char c);
 void		revrotate(t_head **head, char c);
-void		crevrotate(t_head **head);//
 void		sort(t_head *head, t_head *bhed);
+int			makepivot(t_head *head, char c, char idx);
+int			breakrotate(t_head *head, char c, int x);
+int			checkrotate(t_head *head, char c, int pv);
 void		re_sort(t_head *head, t_head *bhed, char c);
 void		re_sortb(t_head *bhed, t_head *head, char c);
 void		sortother(t_head *head, t_head *bhed);

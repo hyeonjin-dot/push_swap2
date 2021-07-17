@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 19:48:32 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 15:34:49 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/16 22:39:24 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,26 @@ int		checkcontent(t_head *head)
 	b = li->next->data;
 	c = li->next->next->data;
 	if (a < b && b < c && a < c)
-		return (0); //1 2 3
+		return (0);
 	else if (a < b && a < c && c < b)
-		return (1); // 1 3 2
+		return (1);
 	else if (a < c && b < c && b < a)
-		return (2); // 2 1 3
+		return (2);
 	else if (a < b && a > c && c < b)
-		return (3); // 2 3 1
+		return (3);
 	else if (a > b && a > c && b > c)
-		return (4); // 3 2 1
-	else // 3 1 2
+		return (4);
+	else
 		return (5);
 }
 
 void	resorthirdb(t_head *bhed, t_head *head, char c)
 {
-//	printf("resorthirdb\n"); //
-	if (checkcontent(bhed) == 4)
-		return (re_sort(head, bhed, 'a'));
-	if (checkcontent(bhed) == 0)
+	if (checkcontent(bhed) <= 1)
     {
         swap(bhed, c);
 		return (resorthirdb(bhed, head, c));
     }
-    else if (checkcontent(bhed) == 1)
-	{
-        swap(bhed, c);
-		push(&bhed, &head, 'a');
-		swap(bhed, c);
-		push(&head, &bhed, c);
-	}
     else if (checkcontent(bhed) == 2)
     {
         push(&bhed, &head, 'a');
@@ -69,14 +59,11 @@ void	resorthirdb(t_head *bhed, t_head *head, char c)
 		swap(bhed, c);
 		push(&head, &bhed, c);
     }
-    if (sortleft(bhed) == 0)
-        return (re_sort(head, bhed, 'a'));
-    return (re_sortb(bhed, head, c));
+    return (re_sort(head, bhed, 'a'));
 }
 
-void	sorthirdb(t_head *bhed, t_head *head, char c) // 무엇이 문제? 
+void	sorthirdb(t_head *bhed, t_head *head, char c)
 {
-//	printf("sorthirdb\n");//
 	if (ft_lstlen(bhed) != 3)
 		return (resorthirdb(bhed, head, c));
 	if (sortleft(bhed) == 0)
@@ -90,14 +77,11 @@ void	sorthirdb(t_head *bhed, t_head *head, char c) // 무엇이 문제?
 		else
 			swap(bhed, c);
 	}
-	if (sortleft(bhed) == 0)
-		return (re_sort(head, bhed, 'a'));
-	return (re_sortb(bhed, head, c));
+	return (re_sort(head, bhed, 'a'));
 }
 
 void	resorthird(t_head *head, t_head *bhed, char c)
 {
-//	printf("resorthird\n");//
 	if (checkcontent(head) == 1)
 	{
 		rotate(&head, c);
@@ -113,45 +97,31 @@ void	resorthird(t_head *head, t_head *bhed, char c)
 		push(&bhed, &head, c);
 		swap(head, c);
 	}
-	else if (checkcontent(head) == 4)
+	else
 	{
 		swap(head, c);
 		return (resorthird(head, bhed, c));
 	}
-	else
-	{
-		swap(head, c);
-		rotate(&head, c);
-		swap(head, c);
-		revrotate(&head, c);
-	}
-	if (sortright(head) == 0 && sortleft(bhed) != 0)
-		return (re_sortb(bhed, head, 'b')); //
-	return ;//(re_sort(head, bhed, c));
+	return (re_sort(head, bhed, 'a'));
 }
 
 void	sorthird(t_head *head, t_head *bhed, char c)
 {
 	t_li	*li;
 
-//	printf("sorthird\n");//
 	if (ft_lstlen(head) != 3 && checkcontent(head) != 0)
 		return (resorthird(head, bhed, c));
-	if (sortright(head) == 0)//
-		return(re_sort(head, bhed, c)); //
+	if (sortright(head) == 0)
+		return(re_sort(head, bhed, c));
 	li = head->fir;
-	if (sortright(head) == 0 && ft_lstlen(bhed) != 0)
-		return (re_sortb(bhed, head, 'b'));
 	if (li->data > li->next->data)
 	{
-		if (li->data > li->next->next->data && li->next->data < li->next->next->data)
+		if (checkcontent(head) == 5)
 			rotate(&head, c);
 		else
 			swap(head, c);
 	}	
 	else
 		revrotate(&head, c);
-	if (sortright(head) == 0)
-		return (lastsort(head, bhed));
-	return (re_sort(head, bhed, c));
+	return (lastsort(head, bhed));
 }

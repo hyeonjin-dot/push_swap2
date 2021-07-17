@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:33 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 11:59:52 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/17 16:20:08 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,49 +48,52 @@ void	ft_error()
 	exit (1);
 }
 
-void	crotate(t_head **head)
+int		breakrotate(t_head *head, char c, int x)
 {
-	t_li	*tmp;
-	t_li	*lst;
+	int		*lst;
 	int		i;
+    int		num;
 
-	if (ft_lstlen(*head) <= 1)
-		return ;
-    i = 0;
-    tmp = (*head)->fir;
-    lst = tmp->next;
-    (*head)->fir = lst;
-    tmp->next = NULL;
-    while (lst->next != NULL)
-    {
-        lst = lst->next;
-        i++;
-    }
-    lst->next = tmp;
+	lst = mklst(head);
+	i = 0;
+	num = 0;
+	while (lst[i])
+	{
+		if (c == 'b' && lst[i] <= x)
+			num++;
+		else if (c == 'a' && lst[i] >= x)
+			num++;
+		else
+			break ;
+		i++;
+	}
+	return (num);
 }
 
-void	crevrotate(t_head **head)
+int		checkrotate(t_head *head, char c, int pv)
 {
-	t_li	*tmp;
-    t_li	*lst;
-    int		i;
+	int		*lst;
+	int		i;
 
-    if (ft_lstlen(*head) <= 1)
-    	return ;
-    i = 0;
-    tmp = (*head)->fir;
-    lst = (*head)->fir->next;
-    while (lst->next != NULL)
-    {
-        lst = lst->next;
-        i++;
-    }
-    (*head)->fir = lst;
-    lst->next = tmp;
-    while (i > 0)
-    {
-        tmp = tmp->next;
-        i--;
-    }
-    tmp->next = NULL;
+	i = 0;
+	lst = mklst(head);
+	if (c == 'a')
+	{
+		while (lst[i])
+		{
+			if (lst[i] <= pv)
+				return (i);
+			i++;
+		}
+	}
+	else
+	{
+		while (lst[i])
+		{
+			if (lst[i] > pv)
+				return (i);
+			i++;
+		}
+	}
+	return (0);
 }

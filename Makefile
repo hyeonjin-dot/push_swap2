@@ -6,7 +6,7 @@
 #    By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/18 13:33:00 by hyejung           #+#    #+#              #
-#    Updated: 2021/06/19 17:40:05 by hyejung          ###   ########.fr        #
+#    Updated: 2021/07/16 22:50:10 by hyejung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ LIB		=	libft/libft.a
 
 SRCS	=	./push_swap.c\
 			./push_func.c\
+			./push_func2.c\
 			./push_list.c\
 			./push_quicksort.c\
 			./push_sort.c\

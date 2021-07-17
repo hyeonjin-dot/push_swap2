@@ -6,16 +6,16 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:45 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 15:56:10 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/16 21:45:40 by jeonghyeo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	li_init(t_head *head)
+void	li_init(t_head *head, t_head *bhed)
 {
 	head->fir = NULL;
-	head->num = 0;
+	bhed->fir = NULL;
 }
 
 void	li_insert(t_head *head, int data)
@@ -55,5 +55,6 @@ void	li_free(t_head *head)
 		free(tmp);
 		j++;
 	}
+	free(head);
 	exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:05:35 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 15:48:13 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/16 22:43:24 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		sortright(t_head *head)
 	return (0);
 }
 
-int	sortleft(t_head *head)
+int		sortleft(t_head *head)
 {
 	t_li	*li;
 	int		len;
@@ -74,9 +74,7 @@ void	sort(t_head *head, t_head *bhed)
 
 	len = ft_lstlen(head);
 	lenb = ft_lstlen(bhed);
-	if (lenb == 0 && sortright(head) == 0)
-		return ;
-	if (len == 1 && lenb == 0)
+	if (sortright(head) == 0 && lenb == 0)
 		return ;
 	else if (len == 2 && lenb == 0)
 	{
