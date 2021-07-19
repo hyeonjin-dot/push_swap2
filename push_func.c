@@ -6,13 +6,13 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:24:33 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/17 16:20:08 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/19 12:16:35 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int checkspace2(char c)
+int			 checkspace2(char c)
 {
     if (c == ' ' || (c >= '\t' && c <= '\r'))
         return (1);
@@ -42,13 +42,13 @@ long long   ft_atoi2(const char *str)
     return (minus * num);
 }
 
-void	ft_error()
+void		ft_error()
 {
 	write(1, "Error\n", 7);
 	exit (1);
 }
 
-int		breakrotate(t_head *head, char c, int x)
+int			breakrotate(t_head *head, char c, int x)
 {
 	int		*lst;
 	int		i;
@@ -70,7 +70,7 @@ int		breakrotate(t_head *head, char c, int x)
 	return (num);
 }
 
-int		checkrotate(t_head *head, char c, int pv)
+int			checkrotate(t_head *head, char c, int pv)
 {
 	int		*lst;
 	int		i;

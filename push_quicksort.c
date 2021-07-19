@@ -6,13 +6,13 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 21:09:01 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/08 15:42:04 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/18 22:15:51 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	*mklst(t_head *head)
+int		*mklst(t_head *head)
 {
 	t_li	*li;
 	int		*lst;
@@ -35,10 +35,10 @@ int	*mklst(t_head *head)
 
 void	quicksort(int *arr, int left, int right)
 {
-	int	i;
-	int	j;
-	int	pivot;
-	int	temp;
+	int		i;
+	int		j;
+	int		pivot;
+	int		temp;
 
 	i = left;
 	j = right;

@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:05:35 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/16 22:43:24 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/19 12:01:56 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ void	sort(t_head *head, t_head *bhed)
 		sortfive(head, bhed);
 	else
 		sortother(head, bhed);
-	return ;
 }

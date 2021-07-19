@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:23:57 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/16 21:47:11 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/19 12:20:27 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		check_num(char  *str)
 	return (j);
 }
 
-char	*inspace(t_head *head, char *str, int i) // 모르게써
+char	*inspace(t_head *head, char *str, int i)
 {
 	char	*tmp;
 	int		num;
@@ -82,6 +82,7 @@ void	checksame(t_head *head)
 		}
 		i++;
 	}
+	free(lst);
 	return ;
 }
 
@@ -110,9 +111,5 @@ int		main(int argc, char *argv[])
 	sort(head, bhed);
 	li_free(head);
 	li_free(bhed);
-/*	while(1)
-	{
-
-	}*/
 	return (0);
 }

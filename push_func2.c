@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 22:44:17 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/16 23:07:40 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/19 12:20:45 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	lastsort(t_head *head, t_head *bhed)
 void	re_sortb(t_head *bhed, t_head *head, char c)
 {
 	int		len;
+
 	len = checksort(bhed, 'b') + 1;
 	if (len < 2)
 		return (lastsort(head, bhed));

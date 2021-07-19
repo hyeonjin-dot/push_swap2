@@ -6,7 +6,7 @@
 /*   By: hyejung <hyejung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 16:53:15 by hyejung           #+#    #+#             */
-/*   Updated: 2021/07/16 21:29:36 by hyejung          ###   ########.fr       */
+/*   Updated: 2021/07/19 12:19:38 by hyejung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int 	findnum(t_head *head, char c)
 
 	lst = mklst(head);
 	len = checksort(head, c);
-	quicksort(lst, 0, len);
+	quicksort(lst, 0, 4);
 	if (c == 'a')
 		num = lst[1];
 	else
@@ -39,7 +39,7 @@ int		*makestrd(t_head *head, char c)
 	j = 0;
 	count = (int *)malloc(sizeof(int) * 3);
 	lst = mklst(head);
-	while (i < 5)
+	while (i++ < 5)
 	{
 		if (c == 'a')
 		{
@@ -51,7 +51,6 @@ int		*makestrd(t_head *head, char c)
 			if (lst[i] >= findnum(head, c))
 				count[j++] = i;
 		}
-		i++;
 	}
 	count[j] = '\0';
 	return (count);
@@ -93,11 +92,11 @@ void	sortfiveb(t_head *bhed, t_head *head)
 
 	count = makestrd(bhed, 'b');
 	k = makethree(bhed, head, 'b', count);
+	free(count);
 	while (ft_lstlen(bhed) != 3 && k-- > 0)
 		revrotate(&bhed, 'b');
 	if (head->fir->data > head->fir->next->data)
 		swap(head, 'a');
-	free(count);
     if (sortleft(bhed) != 0)
         sorthirdb(bhed, head, 'b');
 	push(&head, &bhed, 'b');
@@ -112,11 +111,11 @@ void	sortfive(t_head *head, t_head *bhed)
 
 	count = makestrd(head, 'a');
 	k = makethree(head, bhed, 'a', count);
+	free(count);
 	while (ft_lstlen(head) != 3 && k-- > 0)
 		revrotate(&head, 'a');
 	if (bhed->fir->data < bhed->fir->next->data)
 		swap(bhed, 'b');
-	free(count);
 	if (sortright(head) != 0)
 		sorthird(head, bhed, 'a');
 	push(&bhed, &head, 'a');
